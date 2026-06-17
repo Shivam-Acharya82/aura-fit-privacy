@@ -128,7 +128,7 @@
         <li>Workout data such as completed exercises, workout logs, calories, and training progress.</li>
         <li>Progress and memory data such as weight entries, progress photos, and transformation logs.</li>
         <li>Premium/subscription data such as premium status, payment status, plan, and expiry date.</li>
-        <li>Health Connect data such as steps, distance, and active calories burned.</li>
+        <li>Pedometer and step sensor data such as steps counted, distance, and active calories burned.</li>
         <li>Location data during running sessions to calculate distance, pace, and speed.</li>
         <li>Camera/gallery images selected by you for profile photos and memories.</li>
         <li>Notification preferences for workout reminders, fasting, and activity completion.</li>
@@ -163,21 +163,19 @@
     </section>
 
     <section>
-      <h2>Health Connect and Fitness Data</h2>
+      <h2>Phone Pedometer and Fitness Data</h2>
       <p>
-        If you grant Health Connect permission, AURA-FIT reads steps, distance, and active calories burned
-        to power the step counter, progress reports, calorie burn totals, and fitness analytics.
-        The app also uses the <strong>ACTIVITY_RECOGNITION</strong> permission to detect step and activity
-        movement for accurate fitness tracking.
+        AURA-FIT requests the <strong>ACTIVITY_RECOGNITION</strong> permission on Android devices to read step data
+        directly from the phone's physical pedometer and step counter sensors. This data is used to calculate
+        daily step counts, estimated walking distance, and active calorie burn totals shown in your progress reports and fitness analytics.
       </p>
       <p>
-        <strong>Limited Use:</strong> Health data obtained from Android Health Connect is used solely to
-        provide fitness tracking features within AURA-FIT. It is <strong>not used for advertising</strong>,
-        profiling, or any purpose unrelated to fitness tracking, and is <strong>never sold or shared
-        with third parties</strong>.
+        <strong>Privacy and Limited Use:</strong> This step sensor and activity recognition data is processed entirely
+        locally on your device to display step counts. Capped daily totals are stored securely in your private cloud profile to sync your progress. It is <strong>not used for advertising</strong>,
+        profiling, or any purpose unrelated to fitness tracking, and is <strong>never sold or shared with third parties</strong>.
       </p>
       <p>
-        You can manage or revoke Health Connect permissions from Android settings or the Health Connect app.
+        You can manage or revoke the Activity Recognition / Physical Activity permission from your Android device settings.
       </p>
     </section>
 
@@ -239,7 +237,7 @@
       <h2>Your Choices</h2>
       <ul>
         <li>You can update your profile information inside the app.</li>
-        <li>You can revoke camera, location, notification, or Health Connect permissions from Android settings.</li>
+        <li>You can revoke camera, location, notification, or Physical Activity (pedometer) permissions from Android settings.</li>
         <li>You can deactivate your account temporarily where supported by the app.</li>
         <li>You can permanently delete your account and associated data.</li>
       </ul>
