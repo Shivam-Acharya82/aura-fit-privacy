@@ -4,25 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AURA-FIT Account Deletion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: light;
-      --bg: #eef7ff;
-      --card: #ffffff;
-      --text: #152033;
-      --muted: #5f6f86;
-      --blue: #0b57d0;
-      --gold: #d5a32a;
-      --danger: #dc2626;
-      --line: #dbe7f3;
+      --bg: #f8fafc;
+      --card: rgba(255, 255, 255, 0.78);
+      --text: #1e293b;
+      --muted: #64748b;
+      --blue: #0284c7;
+      --gold: #ca8a04;
+      --danger: #ef4444;
+      --line: rgba(15, 23, 42, 0.08);
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #fff7d6 0%, var(--bg) 260px);
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top, rgba(239, 68, 68, 0.06) 0%, #f8fafc 55%, #f1f5f9 100%);
       color: var(--text);
       line-height: 1.6;
     }
@@ -35,85 +38,186 @@
 
     .hero,
     section {
-      background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: 0 18px 45px rgba(11, 87, 208, 0.08);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .hero {
-      padding: 34px;
-      margin-bottom: 18px;
-      border-top: 6px solid var(--gold);
+      padding: 40px;
+      margin-bottom: 24px;
+      border-top: 6px solid #ef4444;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(239, 68, 68, 0.04) 100%);
     }
 
     section {
-      padding: 28px;
-      margin: 18px 0;
+      padding: 30px;
+      margin: 0;
+    }
+
+    /* Specific Card Background classes with Readable Light Overlay */
+    .bg-tech {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 100%), url('./tech_shield_bg.png');
+    }
+    .bg-fitness {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 100%), url('./fitness_sports_bg.png');
+    }
+    .bg-cloud {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 100%), url('./cloud_db_bg.png');
+    }
+    .bg-security {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 100%), url('./security_choices_bg.png');
+    }
+    .bg-alert {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 100%), url('./alert_comm_bg.png');
+    }
+
+    /* Box Hover Effects: More Popout, shadow and scale */
+    section:hover {
+      border-color: rgba(239, 68, 68, 0.4);
+      box-shadow: 0 20px 45px rgba(239, 68, 68, 0.12), 0 4px 15px rgba(0, 0, 0, 0.05);
+      transform: translateY(-8px) scale(1.015);
+    }
+    
+    .bg-tech:hover {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.82) 100%), url('./tech_shield_bg.png');
+    }
+    .bg-fitness:hover {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.82) 100%), url('./fitness_sports_bg.png');
+    }
+    .bg-cloud:hover {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.82) 100%), url('./cloud_db_bg.png');
+    }
+    .bg-security:hover {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.82) 100%), url('./security_choices_bg.png');
+    }
+    .bg-alert:hover {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.82) 100%), url('./alert_comm_bg.png');
+    }
+
+    /* Responsive Grid Layout */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin: 24px 0;
+    }
+
+    @media (min-width: 768px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .span-2 {
+        grid-column: span 2;
+      }
     }
 
     h1 {
-      margin: 0 0 8px;
-      font-size: clamp(32px, 6vw, 54px);
+      margin: 0 0 10px;
+      font-family: 'Outfit', Arial, sans-serif;
+      font-weight: 900;
+      background: linear-gradient(135deg, #0f172a 30%, #ef4444 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: clamp(36px, 7vw, 56px);
       line-height: 1.05;
-      letter-spacing: 0;
+      letter-spacing: -0.03em;
     }
 
     h2 {
-      margin: 0 0 12px;
+      margin: 0 0 16px;
+      font-family: 'Outfit', Arial, sans-serif;
+      font-weight: 800;
+      color: #0f172a;
       font-size: 24px;
-      letter-spacing: 0;
+      letter-spacing: -0.01em;
+      transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     h3 {
       margin: 16px 0 8px;
+      font-family: 'Outfit', Arial, sans-serif;
+      font-weight: 800;
+      color: #1e293b;
       font-size: 18px;
+    }
+
+    section:hover h2 {
+      color: #ef4444;
+      transform: translateX(6px);
     }
 
     p { margin: 10px 0; }
 
-    ol,
-    ul {
+    ol, ul {
       margin: 10px 0 0;
       padding-left: 22px;
     }
 
     li { margin: 8px 0; }
+    
+    ul li::marker, ol li::marker {
+      color: #ef4444;
+    }
 
     .updated {
-      color: var(--muted);
+      color: #ef4444;
       font-weight: 700;
     }
 
     .pill {
       display: inline-block;
       margin-top: 12px;
-      padding: 8px 12px;
+      padding: 8px 18px;
       border-radius: 999px;
-      background: #eaf3ff;
-      color: var(--blue);
-      font-weight: 800;
-      font-size: 14px;
+      background: rgba(239, 68, 68, 0.08);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .warning {
-      padding: 14px 16px;
+      padding: 16px 20px;
       border-left: 4px solid var(--danger);
-      background: #fff1f2;
-      border-radius: 12px;
-      color: #7f1d1d;
-      font-weight: 700;
+      background: rgba(239, 68, 68, 0.02);
+      border: 1px solid rgba(239, 68, 68, 0.08);
+      border-radius: 14px;
+      color: #b91c1c;
+      font-weight: 600;
+      margin-bottom: 18px;
     }
 
     .note {
-      padding: 14px 16px;
+      padding: 16px 20px;
       border-left: 4px solid var(--gold);
-      background: #fff9e7;
-      border-radius: 12px;
-      color: #4d3b0b;
+      background: rgba(250, 204, 21, 0.02);
+      border: 1px solid rgba(250, 204, 21, 0.08);
+      border-left: 4px solid var(--gold);
+      border-radius: 14px;
+      color: #a16207;
+      margin-top: 18px;
     }
 
-    a { color: var(--blue); font-weight: 700; }
+    a {
+      color: #ef4444;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: #dc2626;
+      text-decoration: underline;
+    }
 
     footer {
       text-align: center;
@@ -127,7 +231,7 @@
   <main>
     <div class="hero">
       <h1>AURA-FIT Account Deletion</h1>
-      <p class="updated">Last updated: May 24, 2026</p>
+      <p class="updated">Last updated: June 20, 2026</p>
       <p>
         This page explains how AURA-FIT users can deactivate their account temporarily
         or permanently delete their account and associated app data.
@@ -135,7 +239,8 @@
       <span class="pill">User-controlled account removal</span>
     </div>
 
-    <section>
+    <div class="grid-container">
+    <section class="span-2 bg-security">
       <h2>Delete Your Account Inside the App</h2>
       <p>You can delete your account directly inside AURA-FIT:</p>
       <ol>
@@ -149,7 +254,7 @@
       </ol>
     </section>
 
-    <section>
+    <section class="bg-security">
       <h2>Temporary Deactivation</h2>
       <p>
         If you choose temporary deactivation, your account is disabled for login until
@@ -166,7 +271,7 @@
       </ul>
     </section>
 
-    <section>
+    <section class="bg-alert">
       <h2>Permanent Deletion</h2>
       <p class="warning">
         Permanent deletion removes your account and associated AURA-FIT cloud data.
@@ -188,7 +293,7 @@
       </p>
     </section>
 
-    <section>
+    <section class="bg-alert">
       <h2>Request Deletion by Email</h2>
       <p>
         If you cannot access the app, you may request account deletion by email.
@@ -203,10 +308,9 @@
         <li>Your request: temporary deactivation or permanent deletion</li>
         <li>Any extra details needed to identify your account</li>
       </ul>
-     
     </section>
 
-    <section>
+    <section class="bg-cloud">
       <h2>Deletion Timeline</h2>
       <p>
         In-app deletion starts immediately after confirmation. Email deletion requests
@@ -215,13 +319,14 @@
       </p>
     </section>
 
-    <section>
+    <section class="span-2 bg-tech">
       <h2>Privacy Policy</h2>
       <p>
         For more information about what data AURA-FIT collects and how it is used, read:
-        <a href="./index.html">AURA-FIT Privacy Policy</a>.
+        <a href="./privacy.html">AURA-FIT Privacy Policy</a>.
       </p>
     </section>
+    </div>
 
     <footer>
       AURA-FIT Account Deletion
